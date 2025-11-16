@@ -45,9 +45,6 @@ class SimulatedAnnealing:
         for iteration in range(1, max_iters + 1):
             temp = self.temp_fn(iteration)
 
-            if temp <= 0:
-                raise ValueError("Temperature function must not return non-positive values")
-
             candidate_solution = self.mutation_fn(current_solution, self.rng)
             candidate_cost = self.cost_fn(candidate_solution)
 
@@ -56,7 +53,7 @@ class SimulatedAnnealing:
                 current_cost = candidate_cost
                 best_solution = current_solution
                 best_cost = current_cost
-            elif self.rng.random() < exp((current_cost - candidate_cost) / temp):
+            elif temp > 0 and self.rng.random() < exp((current_cost - candidate_cost) / temp):
                 current_solution = candidate_solution
                 current_cost = candidate_cost
 
