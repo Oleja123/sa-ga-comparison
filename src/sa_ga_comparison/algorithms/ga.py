@@ -12,7 +12,8 @@ class GeneticAlgorithm:
                  fitness_fn: Callable[[Any], float], 
                  mutation_fn: Callable[[Any, random.Random], Any], 
                  crossover_fn: Callable[[Any, Any, random.Random], Any], 
-                 generation_fn: Callable[[], Any], 
+                 generation_fn: Callable[[Any, random.Random], Any],
+                 selection_fn: Callable[[list[Any], random.Random, int], Any],
                  rng: random.Random = random.Random()):
         self.population_size = population_size
         self.mutation_rate = mutation_rate
@@ -21,6 +22,7 @@ class GeneticAlgorithm:
         self.mutation_fn = mutation_fn
         self.crossover_fn = crossover_fn
         self.generation_fn = generation_fn
+        self.selection_fn = selection_fn
         self.rng = rng
         self.history = []
 
@@ -59,7 +61,7 @@ class GeneticAlgorithm:
 
             current_population = new_population
             current_population.sort(key=lambda x: self.fitness_fn(x))
-            current_population = current_population[:self.population_size]
+            self.selection_fn(current_population, self.rng, self.population_size)
             if best_fitness > self.fitness_fn(current_population[0]):
                 best_individual = current_population[0]
                 best_fitness = self.fitness_fn(best_individual)

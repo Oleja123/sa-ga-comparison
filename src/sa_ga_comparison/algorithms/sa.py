@@ -7,7 +7,7 @@ from typing import Any
 class SimulatedAnnealing:
 
     def __init__(self, 
-                 generation_func: Callable[[random.Random], Any], 
+                 generation_func: Callable[[Any,random.Random], Any], 
                  temp_fn: Callable[[int], float], 
                  mutation_fn: Callable[[Any, random.Random], Any], 
                  cost_fn: Callable[[Any], float], 
