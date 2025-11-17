@@ -12,7 +12,7 @@ class GeneticAlgorithm:
                  fitness_fn: Callable[[Any], float], 
                  mutation_fn: Callable[[Any, random.Random], Any], 
                  crossover_fn: Callable[[Any, Any, random.Random], Any], 
-                 generation_fn: Callable[[Any, random.Random], Any],
+                 generation_fn: Callable[[random.Random], Any],
                  selection_fn: Callable[[list[Any], random.Random], Any],
                  rng: random.Random = random.Random()):
         self.population_size = population_size
