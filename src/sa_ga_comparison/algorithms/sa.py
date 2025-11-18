@@ -51,11 +51,13 @@ class SimulatedAnnealing:
             if candidate_cost < current_cost:
                 current_solution = candidate_solution
                 current_cost = candidate_cost
-                best_solution = current_solution
-                best_cost = current_cost
             elif temp > 0 and self.rng.random() < exp((current_cost - candidate_cost) / temp):
                 current_solution = candidate_solution
                 current_cost = candidate_cost
+
+            if current_cost < best_cost:
+                best_solution = current_solution
+                best_cost = current_cost
 
             self.history.append((current_solution.copy(), current_cost))
 
