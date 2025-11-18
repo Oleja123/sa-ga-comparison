@@ -4,7 +4,6 @@
 
 - notebooks/ - Jupyter notebooks с анализами
 - src/sa_ga_comparison - пакет с реализациями алгоритмов и утилитами
-- tests/ - тесты
 
 Как начать:
 
@@ -14,6 +13,4 @@
    source venv/bin/activate
    pip install -r requirements.txt
 
-2. Открыть `notebooks/analysis.ipynb` и запустить клетки.
-
-Дальнейшие шаги: реализовать конкретные задачи, добавить реализацию операторов для GA и расписание для SA, добавить визуализации и бенчмарки.
+2. Открыть `notebooks/analysis.ipynb` и запустить ячейки.
